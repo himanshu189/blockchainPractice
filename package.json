@@ -1,0 +1,25 @@
+{
+  "name": "bloclchain",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bip39": "^3.0.4",
+    "body-parser": "^1.19.0",
+    "ethereum-public-key-to-address": "^0.0.5",
+    "ethereumjs-tx": "^2.1.2",
+    "ethereumjs-util": "^7.1.0",
+    "ethereumjs-wallet": "^1.0.1",
+    "express": "^4.17.1",
+    "hdkey": "^2.0.1",
+    "node-fetch": "^3.0.0",
+    "nodemon": "^2.0.12",
+    "stellar-sdk": "^8.2.5",
+    "web3": "^1.5.2"
+  }
+}
