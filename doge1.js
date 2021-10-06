@@ -17,11 +17,11 @@ async function checkBalance() {
     );
 
     const response = await axios.get(
-      `https://chain.so/api/v2/get_address_balance/DOGETEST/nWyjTNv1MkwsA4KBJDtYejEYSgakym1pT8`
+      `https://chain.so/api/v2/get_address_balance/DOGETEST/nerniU3cfGpwBmjtzjDDg7dYURHyVH94ig`
     );
    
 
-console.log(response.data)
+console.log(response.data.data.confirmed_balance)
 
     return response;
   } catch (e) {
@@ -29,7 +29,7 @@ console.log(response.data)
   }
 }
 
-// checkBalance()
+checkBalance()
 
 
 async function trans(){
@@ -43,7 +43,7 @@ let fee = 0;
     `https://chain.so/api/v2/get_tx_unspent/DOGETEST/nerniU3cfGpwBmjtzjDDg7dYURHyVH94ig`
   );
 
-  //   console.log("UTXOS", utxos.data.data.txs);
+    console.log("UTXOS", utxos.data.data);
 
   const transaction = new bitcore.Transaction();
   let totalAmountAvailable = 0;
@@ -70,23 +70,35 @@ let fee = 0;
 //   script: Script.buildPublicKeyHashOut(fromAddress).toString(),
 //   satoshis: 10e8
 // };
-transactionSize = inputCount * 146 + outputCount * 34 + 10 - inputCount;
-  // Check if we have enough funds to cover the transaction and the fees assuming we want to pay 20 satoshis per byte
 
-  fee = 1000000000/5*1.5
+// transactionSize = inputCount * 146 + outputCount * 34 + 10 - inputCount;
+// // Check if we have enough funds to cover the transaction and the fees assuming we want to pay 20 satoshis per byte
+
+// fee = transactionSize * 20;
+  var amount= 1
+
+// if(bal< amount + fee/10e8 ){
+// console.log("low balance")
+//   return
+// }
+
 
 var tx =bitcore.Transaction()
       .from(inputs)
-      .to([{address: "2N1KWYQ55aFJD9AdEbqgPG2o7kDYmtGhYdC", satoshis: 10*100000000}])
-      .fee(fee)
+      .to([{address: "nXBKoApELM2hwjX2rMGGH1oPvHMNj2f2L2", satoshis: amount*100000000}])
       .change("nerniU3cfGpwBmjtzjDDg7dYURHyVH94ig")
       .sign("ch9D9G9yRqVirouuHSc5hxZvbcTbsibxqSbHqtyxtqCiPmgsv5EM");
 
-      // console.log("tx",tx.serialize())
+        var fees= tx.getFee()
+      console.log("tx",fees)
+
+      var txs = tx.fee(fees)
+      .sign("ch9D9G9yRqVirouuHSc5hxZvbcTbsibxqSbHqtyxtqCiPmgsv5EM");
+
       // console.log(transaction.isFullySigned().should.equal(true))
 
       try{
-        var data={tx_hex:tx.serialize()}
+        var data={tx_hex:txs.serialize()}
         var result = await axios.post("https://chain.so/api/v2/send_tx/DOGETEST",data)
         console.log("res",result.data)
 
@@ -96,3 +108,6 @@ var tx =bitcore.Transaction()
       }
 }
 trans()
+
+
+// transaction.getFee()
