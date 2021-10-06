@@ -8,8 +8,8 @@ const bitcore = require("bitcore-lib");
 
 const sendBitcoin = async (recieverAddress, amountToSend) => {
   const sochain_network = "BTCTEST";
-  const privateKey = "cUJJnJoZYNN4NJaXD9CXig4gVmuACRVmfmn3JNpLj9TUSf2yzwk8";
-  const sourceAddress = "msSK81NmA4pxGBYmD8iXjCy2MEK822X7rK";
+  const privateKey = "cUpBwaXNmJ8ypAUxXvxSAn8ittCiEQJaN9vu4zCDELeJkXbGhfLQ";
+  const sourceAddress = "mzxyxcPAgXoErHpTX93Xp62dddMXecuBR1";
   const satoshiToSend = amountToSend * 100000000;
 
   //   console.log("to send", satoshiToSend);
@@ -57,13 +57,14 @@ const sendBitcoin = async (recieverAddress, amountToSend) => {
     transaction.change(sourceAddress);
 
     //manually set transaction fees: 20 satoshis per byte
-    transaction.fee(fee * 20);
+    transaction.fee(fee * 1);
 
     // Sign transaction with your private key
     transaction.sign(privateKey);
 
     // serialize Transactions
     const serializedTransaction = transaction.serialize();
+    console.log(serializedTransaction)
 
     // Send transaction
     const result = await axios({
@@ -73,8 +74,8 @@ const sendBitcoin = async (recieverAddress, amountToSend) => {
         tx_hex: serializedTransaction,
       },
     });
-    return result.data.data;
+    // console.log(result.data.data);
   }
 };
 
-sendBitcoin("mq1bMXhAGt8Z6ZZngqdE2AWPeRnvDZ7HMY", 0.00003);
+sendBitcoin("mzxyxcPAgXoErHpTX93Xp62dddMXecuBR1", 0.00003);

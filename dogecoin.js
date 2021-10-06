@@ -1,5 +1,5 @@
 const BlockIo = require('block_io');
-const block_io = new BlockIo('ed84-f69b-f452-30b8');
+const block_io = new BlockIo({api_key:'ed84-f69b-f452-30b8', pin:"himanshutyagi123"});
 
 
 async function createNewAddress(){
@@ -41,11 +41,11 @@ async function getAddressBalance(){
     .catch(error => console.log("Error:", error.message))  
 
 }
-getAddressBalance()
+// getAddressBalance()
 
 
 async function transactionDoge(){
-   const response = await block_io.prepare_transaction({ amounts: '20', from_addresses: '2N8G2rjFe6LNcKCtRVyPAhakdxDV9bjSaqc', to_addresses: '2MtwNfQZ9BLmzq9B38AfzQrHXpB1wjrJwRH' , priority: 'high' });
+   const response = await block_io.prepare_transaction({ amounts: '10', from_addresses: '2NBiwahiVsw7862MCYLVyySriYM9EW2Z76t', to_addresses: '2N1KWYQ55aFJD9AdEbqgPG2o7kDYmtGhYdC' , priority: 'high' });
 
    console.log(response)
 
