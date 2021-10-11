@@ -75,7 +75,7 @@ let fee = 0;
 // // Check if we have enough funds to cover the transaction and the fees assuming we want to pay 20 satoshis per byte
 
 // fee = transactionSize * 20;
-  var amount= 1
+  var amount= 10
 
 // if(bal< amount + fee/10e8 ){
 // console.log("low balance")
