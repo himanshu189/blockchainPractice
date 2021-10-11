@@ -19,14 +19,14 @@ async function run() {
     source: {
       address: "rLvC2SfoGyBiA6A95QAsWsiyTMvKPyR9Dx", //from address
       maxAmount: {
-        value: '10.00',
+        value: '20.00',
         currency: 'XRP'
       }
     },
     destination: {
-      address: "r4bqAgJbKcagFgk1GmBXPcKz9yrR7BxKWy", //to address
+      address: "rUhaEJu129UtHEbQzoXZ9EfPqMUKCk1ZsU", //to address
       amount: {
-        value: '10.00',
+        value: '20.00',
         currency: 'XRP'
       }
     }
